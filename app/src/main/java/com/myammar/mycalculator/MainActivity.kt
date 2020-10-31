@@ -2,6 +2,7 @@ package com.myammar.mycalculator
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.button.*
@@ -30,6 +31,9 @@ class MainActivity : AppCompatActivity() {
         btn_min.setOnClickListener { appendOnInput("-", false) }
         btn_kali.setOnClickListener { appendOnInput("*", false) }
         btn_div.setOnClickListener { appendOnInput("/", false) }
+        btn_round.setOnClickListener { round() }
+        btn_ceil.setOnClickListener { ceiling() }
+        btn_floor.setOnClickListener { floor() }
 
         btn_clear.setOnClickListener {
             tvInput.text = ""
@@ -40,6 +44,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         btn_enter.setOnClickListener {
+
             try {
                 val input = ExpressionBuilder(tvInput.text.toString()).build()
                 val output = input.evaluate()
@@ -50,12 +55,13 @@ class MainActivity : AppCompatActivity() {
                     tvOutput.text = output.toString()
                 }
             } catch (e:Exception) {
-                Log.d("Exception", "Pesan :" + e.message)
+             Log.d("Exception","pesan :" + e.message)
             }
+
         }
     }
 
-    fun appendOnInput ( string: String, canClear : Boolean){
+    private fun appendOnInput ( string: String, canClear : Boolean){
 
         if (tvOutput.text.isNotEmpty()){
             tvInput.text= ""
@@ -67,6 +73,55 @@ class MainActivity : AppCompatActivity() {
             tvInput.append(tvOutput.text)
             tvInput.append(string)
             tvOutput.text = ""
+        }
+    }
+
+    private fun round() {
+        try {
+            if (tvOutput.text.isNotEmpty()){
+                var num = tvOutput.text.toString()
+                tvInput.text = (Math.round(num.toDouble()*10.0/10.0)).toString()
+                tvOutput.text = ""
+            } else {
+                var num = tvOutput.text.toString()
+                tvInput.text= (Math.round(num.toDouble()*10.0/10.0)).toString()
+            }
+        } catch (e:Exception){
+            tvOutput.text = ""
+            tvInput.text = ""
+            Toast.makeText(this, "Insert the Number", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun ceiling() {
+        try {
+            if (tvOutput.text.isNotEmpty()){
+                var num = tvOutput.text.toString()
+                tvInput.text = Math.ceil(num.toDouble()).toInt().toString()
+                tvOutput.text = ""
+            } else {
+                var num = tvOutput.text.toString()
+                tvInput.text= Math.ceil(num.toDouble()).toInt().toString()
+            }
+        } catch (e:Exception){
+            tvOutput.text = ""
+            tvInput.text = ""
+            Toast.makeText(this, "Insert the Number", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun floor() {
+        try {
+            if (tvOutput.text.isNotEmpty()){
+                var num = tvOutput.text.toString()
+                tvInput.text = Math.floor(num.toDouble()).toInt().toString()
+                tvOutput.text = ""
+            } else {
+                var num = tvOutput.text.toString()
+                tvInput.text= Math.floor(num.toDouble()).toInt().toString()
+            }
+        } catch (e:Exception){
+            tvOutput.text = ""
+            tvInput.text = ""
+            Toast.makeText(this, "Insert the Number", Toast.LENGTH_SHORT).show()
         }
     }
 }
