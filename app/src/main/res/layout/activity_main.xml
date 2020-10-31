@@ -6,24 +6,28 @@
     android:background="@color/dark_grey">
 
     <TextView
+        android:id="@+id/tvOutput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background"
         android:gravity="end"
         android:padding="7dp"
-        android:text="@string/zero"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:textColor="@color/black"
-        android:textSize="30sp">
+        android:textSize="55sp">
     </TextView>
     <TextView
+        android:id="@+id/tvInput"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/background"
         android:gravity="end"
         android:padding="7dp"
-        android:text="@string/zero"
+        android:ellipsize="start"
+        android:singleLine="true"
         android:textColor="@color/black"
-        android:textSize="60sp">
+        android:textSize="35sp">
     </TextView>
 
 
