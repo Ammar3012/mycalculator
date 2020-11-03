@@ -31,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         btn_min.setOnClickListener { appendOnInput("-", false) }
         btn_kali.setOnClickListener { appendOnInput("*", false) }
         btn_div.setOnClickListener { appendOnInput("/", false) }
+        btn_pangkat.setOnClickListener {  appendOnInput("^2", false) }
+        btn_akar.setOnClickListener { pangkat()  }
         btn_round.setOnClickListener { round() }
         btn_ceil.setOnClickListener { ceiling() }
         btn_floor.setOnClickListener { floor() }
@@ -78,13 +80,13 @@ class MainActivity : AppCompatActivity() {
 
     private fun round() {
         try {
-            if (tvOutput.text.isNotEmpty()){
-                var num = tvOutput.text.toString()
-                tvInput.text = (Math.round(num.toDouble()*10.0/10.0)).toString()
-                tvOutput.text = ""
+            if (tvInput.text.isNotEmpty()){
+                var num = tvInput.text.toString()
+                tvOutput.text = (Math.round(num.toDouble()*10.0/10.0)).toString()
+                tvInput.text = ""
             } else {
-                var num = tvOutput.text.toString()
-                tvInput.text= (Math.round(num.toDouble()*10.0/10.0)).toString()
+                var num = tvInput.text.toString()
+                tvOutput.text= (Math.round(num.toDouble()*10.0/10.0)).toString()
             }
         } catch (e:Exception){
             tvOutput.text = ""
@@ -94,13 +96,13 @@ class MainActivity : AppCompatActivity() {
     }
     private fun ceiling() {
         try {
-            if (tvOutput.text.isNotEmpty()){
-                var num = tvOutput.text.toString()
-                tvInput.text = Math.ceil(num.toDouble()).toInt().toString()
-                tvOutput.text = ""
+            if (tvInput.text.isNotEmpty()){
+                var num = tvInput.text.toString()
+                tvOutput.text = Math.ceil(num.toDouble()).toInt().toString()
+                tvInput.text = ""
             } else {
-                var num = tvOutput.text.toString()
-                tvInput.text= Math.ceil(num.toDouble()).toInt().toString()
+                var num = tvInput.text.toString()
+                tvOutput.text= Math.ceil(num.toDouble()).toInt().toString()
             }
         } catch (e:Exception){
             tvOutput.text = ""
@@ -110,13 +112,29 @@ class MainActivity : AppCompatActivity() {
     }
     private fun floor() {
         try {
-            if (tvOutput.text.isNotEmpty()){
-                var num = tvOutput.text.toString()
-                tvInput.text = Math.floor(num.toDouble()).toInt().toString()
-                tvOutput.text = ""
+            if (tvInput.text.isNotEmpty()){
+                var num = tvInput.text.toString()
+                tvOutput.text = Math.floor(num.toDouble()).toInt().toString()
+                tvInput.text = ""
             } else {
-                var num = tvOutput.text.toString()
-                tvInput.text= Math.floor(num.toDouble()).toInt().toString()
+                var num = tvInput.text.toString()
+                tvOutput.text= Math.floor(num.toDouble()).toInt().toString()
+            }
+        } catch (e:Exception){
+            tvOutput.text = ""
+            tvInput.text = ""
+            Toast.makeText(this, "Insert the Number", Toast.LENGTH_SHORT).show()
+        }
+    }
+    private fun pangkat() {
+        try {
+            if (tvInput.text.isNotEmpty()){
+                var num = tvInput.text.toString()
+                tvOutput.text = Math.sqrt(num.toDouble()).toFloat().toString()
+                tvInput.text = ""
+            } else {
+                var num = tvInput.text.toString()
+                tvOutput.text= Math.sqrt(num.toDouble()).toFloat().toString()
             }
         } catch (e:Exception){
             tvOutput.text = ""
