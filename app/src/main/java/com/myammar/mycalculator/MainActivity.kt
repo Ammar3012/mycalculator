@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         btn_kali.setOnClickListener { appendOnInput("*", false) }
         btn_div.setOnClickListener { appendOnInput("/", false) }
         btn_pangkat.setOnClickListener {  appendOnInput("^2", false) }
-        btn_akar.setOnClickListener { pangkat()  }
+        btn_akar.setOnClickListener { akar()  }
         btn_round.setOnClickListener { round() }
         btn_ceil.setOnClickListener { ceiling() }
         btn_floor.setOnClickListener { floor() }
@@ -126,7 +126,7 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "Insert the Number", Toast.LENGTH_SHORT).show()
         }
     }
-    private fun pangkat() {
+    private fun akar() {
         try {
             if (tvInput.text.isNotEmpty()){
                 var num = tvInput.text.toString()
